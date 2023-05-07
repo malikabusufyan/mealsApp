@@ -8,7 +8,7 @@ body {
   background-size: cover;
   background-position: center;
 }
-
+/* HomePage */
 /* Navigation Bar */
 nav {
     background-color: #dbd6d6;
@@ -129,6 +129,8 @@ nav {
     font-weight: 600;
 }
 /* End of Search Section */
+
+/* Start of Card Descriptions  */
 #cards-holder {
   width: 100%;
   display: flex;
@@ -209,6 +211,7 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
 }
 .details:hover,
 .video:hover,
@@ -218,3 +221,6 @@ nav {
     transform: scale(1.1);
     cursor: pointer;
 }
+
+/* End of Card Descriptions  */
+/* End HomePage */
