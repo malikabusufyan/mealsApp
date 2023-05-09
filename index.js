@@ -1,7 +1,15 @@
+
+if (localStorage.getItem("favouritesList") == null) {
+    localStorage.setItem("favouritesList", JSON.stringify([]));
+}
+
+let arr = JSON.parse(localStorage.getItem("favouritesList"));
+
 async function mealsList(searchQuery = '') {
   const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchQuery}`);
   const data = await response.json();
   const meals = data.meals;
+  console.log(meals);
   const cards = document.querySelector('.cards');
   cards.innerHTML = '';
   if (meals) {
@@ -59,6 +67,14 @@ async function mealsList(searchQuery = '') {
         details.classList.add('details');
         video.classList.add('video');
         favIcon.classList.add('fav-icon');
+
+    favIcon.addEventListener('click', () => {
+        arr.push(meal);
+        localStorage.setItem("favouritesList", JSON.stringify(arr));
+        alert("Added To Favorites!");
+        removeAll();
+        showFavMeals();
+    });
 
         const youtubeUrl = `https://www.youtube.com/watch?v=${meal.strYoutube.slice(-11)}`;
         video.href = youtubeUrl;
@@ -152,7 +168,73 @@ function searchMeals() {
 
 function toggleSidebar() {
     const sidebar = document.querySelector('.sidebar');
-    sidebar.style.right = sidebar.style.right === '-350px' ? '0' : '-350px';
+    sidebar.style.right = sidebar.style.right === '-320px' ? '0' : '-320px';
+}
+
+function removeAll(){
+    let container = document.getElementById('favourites-body');
+    let child = container.lastElementChild;
+    while (child){
+        container.removeChild(child);
+        child = container.lastElementChild;
+    }
+  }
+
+async function showFavMeals() {
+  removeAll();
+  let favoritesBody = document.querySelector('.fav_items');
+
+  if (arr.length === 0) {
+    let message = document.createElement('p');
+    message.innerHTML = "No meals added to favorites!";
+    favoritesBody.appendChild(message);
+    return;
+  }
+
+  // Creating dynamic cards for favorite meals section
+  for (let i = 0; i < arr.length; i++) {
+    let favItem = document.createElement('div');
+    favItem.classList.add('item');
+    favoritesBody.appendChild(favItem);
+
+    let leftSection = document.createElement('div');
+    leftSection.classList.add('left');
+    favItem.appendChild(leftSection);
+
+    let rightSection = document.createElement('div');
+    rightSection.classList.add('right');
+    favItem.appendChild(rightSection);
+
+    let favItemImage = document.createElement('div');
+    favItemImage.classList.add('fav-item-image');
+    leftSection.appendChild(favItemImage);
+
+    let favImage = document.createElement('img');
+    favImage.src = arr[i].strMealThumb;
+    favItemImage.appendChild(favImage);
+
+    let favItemDetails = document.createElement('div');
+    favItemDetails.classList.add('fav-item-details');
+    rightSection.appendChild(favItemDetails);
+
+    let favName = document.createElement('p');
+    favName.innerHTML = "Name: " + arr[i].strMeal;
+    favItemDetails.appendChild(favName);
+
+    let remove = document.createElement('button');
+    remove.innerHTML = "Remove";
+    remove.classList.add('remove-button');
+    favItemDetails.appendChild(remove);
+
+    // Event listener to remove single element from the local storage
+    remove.addEventListener('click', function() {
+      const index = arr.findIndex((meal) => meal.strMeal === arr[i].strMeal);
+      arr.splice(index, 1);
+      localStorage.setItem('favouritesList', JSON.stringify(arr));
+      removeAll();
+      showFavMeals();
+    });
+  }
 }
 
 const searchInput = document.getElementById('search-input');
