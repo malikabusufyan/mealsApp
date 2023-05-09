@@ -7,6 +7,7 @@ body {
   background-image: url("./Images/bg.jpg");
   background-size: cover;
   background-position: center;
+  position: relative;
 }
 /* HomePage */
 /* Navigation Bar */
@@ -60,6 +61,64 @@ nav {
     color: #000;
     text-decoration: none;
 }
+
+/* sidebar */
+/* CSS code for sidebar */
+/* CSS code for sidebar */
+.sidebar {
+    position: fixed;
+    top: 73px;
+    right: -350px; 
+    width: 350px; 
+    height: 100%;
+    background-color: #f2f2f2;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: right 0.3s ease-in-out; 
+    z-index: 1;
+}
+
+.sidebar-content {
+    padding: 20px;
+}
+
+.sidebar-heading {
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+    position: relative; 
+}
+
+.sidebar-heading::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -10px;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    background-color: #dbd6d6;
+    border-radius: 50%;
+}
+
+.sidebar-heading::after {
+    content: "";
+    position: absolute;
+    top: calc(50% + 4px);
+    left: -10px;
+    width: 1px;
+    height: calc(100% - (50% + 4px));
+    background-color: #dbd6d6;
+}
+
+.sidebar-heading h2 {
+    font-size: 20px;
+    color: #555;
+    margin: 0;
+    padding-left: 10px;
+}
+
+
+
 /* End of Navigation Bar */
 
 /* Start of Search Section */
@@ -188,7 +247,6 @@ nav {
     font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
-
 .extras {
     flex: 0.1;
     display: flex;
@@ -224,7 +282,7 @@ nav {
 
 /* End of Card Descriptions  */
 /* End HomePage */
-
+/* Details Page */
 /* Container styles */
 .card-container {
   width: 60%;

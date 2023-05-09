@@ -134,7 +134,7 @@ async function mealsList(searchQuery = '') {
 
         // Append the card container to the cards holder
         cards.appendChild(cardContainer);
-        innerHTML.value="";
+        searchInput.value = '';
         });
     });
   } else {
@@ -150,7 +150,11 @@ function searchMeals() {
   mealsList(searchText); 
 }
 
+function toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.style.right = sidebar.style.right === '-350px' ? '0' : '-350px';
+}
+
 const searchInput = document.getElementById('search-input');
 searchInput.addEventListener('input', searchMeals);
 mealsList();
-
