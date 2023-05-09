@@ -143,6 +143,13 @@ async function mealsList(searchQuery = '') {
         const favIcon = document.createElement('button');
         favIcon.innerHTML = 'Fav<i class="bi bi-suit-heart-fill"></i>';
         favIcon.classList.add('fav-icon');
+        favIcon.addEventListener('click', () => {
+            arr.push(meal);
+            localStorage.setItem("favouritesList", JSON.stringify(arr));
+            alert("Added To Favorites!");
+            removeAll();
+            showFavMeals();
+        });
 
         extras.appendChild(video);
         extras.appendChild(favIcon);
