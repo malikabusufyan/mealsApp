@@ -64,7 +64,6 @@ nav {
     color: #000;
     text-decoration: none;
 }
-
 /* End of Navigation Bar */
 
 /* CSS code for sidebar */
@@ -131,6 +130,7 @@ nav {
   gap: 10px;
   border: 1px solid #ccc;
   padding: 10px;
+  
 }
 
 .item {
@@ -186,6 +186,14 @@ nav {
 
 .remove-button:hover {
   background-color: #cc0000;
+}
+
+.fav_items::-webkit-scrollbar {
+  display: none;
+}
+
+.fav_items{
+  -ms-overflow-style: none;
 }
 
 /* Start of Search Section */

@@ -243,7 +243,7 @@ async function showFavMeals() {
     remove.classList.add('remove-button');
     favItemDetails.appendChild(remove);
 
-    // Event listener to remove single element from the local storage
+    //Event listener to remove single element from the local storage
     remove.addEventListener('click', function() {
       const index = arr.findIndex((meal) => meal.strMeal === arr[i].strMeal);
       arr.splice(index, 1);
