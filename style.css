@@ -1,14 +1,17 @@
+/* Reset all values  */
 *{
     margin: 0;
     padding: 0;
 }
 
+/* Addition of Background Image */
 body {
   background-image: url("./Images/bg.jpg");
   background-size: cover;
   background-position: center;
   position: relative;
 }
+
 /* HomePage */
 /* Navigation Bar */
 nav {
@@ -63,6 +66,7 @@ nav {
 }
 
 /* End of Navigation Bar */
+
 /* CSS code for sidebar */
 .sidebar {
     position: fixed;
@@ -115,6 +119,8 @@ nav {
     margin: 0;
     padding-left: 10px;
 }
+
+/* Favourites Items after addition */
 .fav_items {
   height: 700px;
   width: 100%;
@@ -163,6 +169,7 @@ nav {
 .fav-item-details p {
   flex: 1 1 100%;
   margin: 0;
+  font-size:large;
 }
 
 .remove-button {
@@ -172,14 +179,14 @@ nav {
   border: none;
   cursor: pointer;
   font-size: 14px;
-  border-radius: 5px;
+  border-radius: 15px;
   transition: background-color 0.3s ease;
+  font-weight: bolder;
 }
 
 .remove-button:hover {
   background-color: #cc0000;
 }
-
 
 /* Start of Search Section */
 .search-container {
@@ -341,7 +348,7 @@ nav {
 }
 
 /* End of Card Descriptions  */
-/* End HomePage */
+
 /* Details Page */
 /* Container styles */
 .card-container {
@@ -355,7 +362,6 @@ nav {
   border-radius: 10px;
 }
 
-/* Title */
 .mtitle {
   background-color: #f1f1f1;
   padding: 10px;
@@ -372,12 +378,10 @@ nav {
   margin-bottom: 5px;
 }
 
-/* SectionLR - Left and Right sections */
 .sectionLR {
   display: flex;
 }
 
-/* Left section */
 .left_section {
   flex: 40%;
 }
@@ -391,7 +395,6 @@ nav {
   border-radius: 8px;
 }
 
-/* Right section */
 .right_section {
   flex: 60%;
   padding: 10px;
@@ -403,9 +406,20 @@ nav {
   color: #555;
 }
 
-/* Hover styles */
 .card-container:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transform: translateY(-2px);
   transition: box-shadow 0.3s, transform 0.3s;
 }
+
+/*CSS for When no result found after search */
+.cards p.no-results-message {
+  font-size: 40px;
+  text-align: center;
+  color: rgb(141, 8, 108);
+  margin-top: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+/* This is the complete CSS for the mealsApp */

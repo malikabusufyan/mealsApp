@@ -1,10 +1,12 @@
 
+// Initialise local Storage Object and add them into arr
+
 if (localStorage.getItem("favouritesList") == null) {
     localStorage.setItem("favouritesList", JSON.stringify([]));
 }
-
 let arr = JSON.parse(localStorage.getItem("favouritesList"));
 
+// Function to show the mealsList on the HomePage 
 async function mealsList(searchQuery = '') {
   const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchQuery}`);
   const data = await response.json();
@@ -12,8 +14,10 @@ async function mealsList(searchQuery = '') {
   console.log(meals);
   const cards = document.querySelector('.cards');
   cards.innerHTML = '';
+// Search for the meals 
   if (meals) {
     meals.forEach(meal => {
+        //Cards is the outside container and food-card is the small cards
         const card = document.createElement('div');
         card.classList.add('food-card');
         cards.appendChild(card);
@@ -67,7 +71,8 @@ async function mealsList(searchQuery = '') {
         details.classList.add('details');
         video.classList.add('video');
         favIcon.classList.add('fav-icon');
-
+    //Adding of an Eventlistner when someone clicks on Fav button 
+    //so it should added to the favourite sidebar
     favIcon.addEventListener('click', () => {
         arr.push(meal);
         localStorage.setItem("favouritesList", JSON.stringify(arr));
@@ -82,15 +87,15 @@ async function mealsList(searchQuery = '') {
         extras.appendChild(details);
         extras.appendChild(video);
         extras.appendChild(favIcon);
+    //Adding an eventListner to the details which will open details of the food when clicked
     details.addEventListener('click', () => {
-        // Clear the cards container
+        //cards container
         cards.innerHTML = '';
 
-        // Create the card container
+        //card container
         const cardContainer = document.createElement('div');
         cardContainer.classList.add('card-container');
 
-        // Create the title
         const titleDiv = document.createElement('div');
         const title = document.createElement('h3');
         title.innerHTML = meal.strMeal;
@@ -98,12 +103,10 @@ async function mealsList(searchQuery = '') {
         titleDiv.appendChild(title);
         cardContainer.appendChild(titleDiv);
 
-        // Create the sectionLR div
         const sectionLR = document.createElement('div');
         sectionLR.classList.add('sectionLR');
         cardContainer.appendChild(sectionLR);
 
-        // Create the left and right sections
         const leftPart = document.createElement('div');
         const rightPart = document.createElement('div');
         leftPart.classList.add('left_section');
@@ -111,13 +114,11 @@ async function mealsList(searchQuery = '') {
         sectionLR.appendChild(leftPart);
         sectionLR.appendChild(rightPart);
 
-        // Create the image
         const image = document.createElement('img');
         image.src = meal.strMealThumb;
         image.classList.add('image');
         leftPart.appendChild(image);
 
-        // Create the category, ingredients, and instructions
         const category = document.createElement('p');
         const ingredients = document.createElement('p');
         const instructions = document.createElement('p');
@@ -129,11 +130,9 @@ async function mealsList(searchQuery = '') {
         ingredients.innerHTML = `Ingredients: ${meal.strIngredient1}, ${meal.strIngredient2}, ${meal.strIngredient3}`;
         instructions.innerHTML = `Instructions: ${meal.strInstructions}`;
 
-        // Create the extras div
         const extras = document.createElement('div');
         extras.classList.add('extras');
 
-        // Create the video link and favorite icon
         const video = document.createElement('a');
         video.innerHTML = 'Video📺';
         video.classList.add('video');
@@ -143,7 +142,9 @@ async function mealsList(searchQuery = '') {
         const favIcon = document.createElement('button');
         favIcon.innerHTML = 'Fav<i class="bi bi-suit-heart-fill"></i>';
         favIcon.classList.add('fav-icon');
-        favIcon.addEventListener('click', () => {
+      
+      // This is Fav Event Listner from the details button when clicked it should save into the favourites list
+      favIcon.addEventListener('click', () => {
             arr.push(meal);
             localStorage.setItem("favouritesList", JSON.stringify(arr));
             alert("Added To Favorites!");
@@ -160,24 +161,30 @@ async function mealsList(searchQuery = '') {
         searchInput.value = '';
         });
     });
+    
   } else {
+    //When no result found
     const noResultsMessage = document.createElement('p');
-    noResultsMessage.textContent = 'No matching meals found.';
+    noResultsMessage.textContent = 'No Matching Meals Found';
+    noResultsMessage.classList.add('no-results-message');
     cards.appendChild(noResultsMessage);
   }  
 }
 
+//This is to search the meals 
 function searchMeals() {
   const searchInput = document.getElementById('search-input');
   const searchText = searchInput.value.trim().toLowerCase();
   mealsList(searchText); 
 }
 
+//This is to toggle the sidebar when clicked on Favourites
 function toggleSidebar() {
     const sidebar = document.querySelector('.sidebar');
     sidebar.style.right = sidebar.style.right === '-320px' ? '0' : '-320px';
 }
 
+//This is remove All
 function removeAll(){
     let container = document.getElementById('favourites-body');
     let child = container.lastElementChild;
@@ -187,10 +194,13 @@ function removeAll(){
     }
   }
 
+//This is to show the Favourite Meals
 async function showFavMeals() {
+
   removeAll();
   let favoritesBody = document.querySelector('.fav_items');
 
+  //When no meals are there in the favourites list
   if (arr.length === 0) {
     let message = document.createElement('p');
     message.innerHTML = "No meals added to favorites!";
@@ -198,7 +208,7 @@ async function showFavMeals() {
     return;
   }
 
-  // Creating dynamic cards for favorite meals section
+  //Creating dynamic cards for favorite meals section
   for (let i = 0; i < arr.length; i++) {
     let favItem = document.createElement('div');
     favItem.classList.add('item');
@@ -238,12 +248,17 @@ async function showFavMeals() {
       const index = arr.findIndex((meal) => meal.strMeal === arr[i].strMeal);
       arr.splice(index, 1);
       localStorage.setItem('favouritesList', JSON.stringify(arr));
+      alert("Removed From the Favorites!");
       removeAll();
       showFavMeals();
     });
+    searchInput.value = '';
+    mealsList();
   }
 }
 
 const searchInput = document.getElementById('search-input');
 searchInput.addEventListener('input', searchMeals);
 mealsList();
+
+//This is Complete JS for the meals App 
