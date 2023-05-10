@@ -47,3 +47,17 @@ Upon opening the Meals App in a web browser, you will be presented with a homepa
 
 Contributions to the Meals App are welcome! If you have any suggestions, improvements, or bug fixes, please open an issue or submit a pull request.
 
+#Pages
+
+##Homepage
+
+![HomePage](https://github.com/malikabusufyan/mealsApp/assets/118253617/161dedd3-04d2-4661-bb6b-de0be44de86c)
+
+##Details Page
+
+![Details Page](https://github.com/malikabusufyan/mealsApp/assets/118253617/ca95c736-59e5-4d6f-92cf-b822cc52d7b9)
+
+##Favorite Page
+
+![Favorites](https://github.com/malikabusufyan/mealsApp/assets/118253617/22664fa7-d7af-4505-93bd-80f20cb68ac4)
+
