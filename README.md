@@ -47,7 +47,7 @@ Upon opening the Meals App in a web browser, you will be presented with a homepa
 
 Contributions to the Meals App are welcome! If you have any suggestions, improvements, or bug fixes, please open an issue or submit a pull request.
 
-#Pages
+## Pages
 
 ##Homepage
 
